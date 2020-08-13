@@ -1,0 +1,3 @@
+*Ejecutar estos comandos antes
+npm install
+npm install vue bootstrap-vue bootstrap
