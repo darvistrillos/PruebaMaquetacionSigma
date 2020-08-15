@@ -10,7 +10,7 @@ import App from './App'
  Vue.use(BootstrapVue);
 
  require('./assets/Css/myStyle.css');
-
+ require('./assets/Js/Custumer.js');
  Vue.config.productionTip = false
 
 /* eslint-disable no-new */

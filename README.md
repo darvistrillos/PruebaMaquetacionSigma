@@ -13,8 +13,8 @@ npm install
 # BootStrap
 npm install vue bootstrap-vue bootstrap
 
-# Axios Api
-npm install axios
+# Jquery
+npm install jquery
 
 
 # serve with hot reload at localhost:8080
