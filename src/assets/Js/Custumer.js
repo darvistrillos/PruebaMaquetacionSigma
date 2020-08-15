@@ -33,7 +33,14 @@ $(document).ready(function () {
             $('#TxtNombre').focus();
             return false;
         }
+        if($('#TxtEmail').val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/) == null) {
+            $('#modalguarda7').trigger('click');
+            $('#TxtEmail').focus();
+            return false;
+            
+        }
         if (jEmail == '') {
+
             $('#modalguarda5').trigger('click');
             $('#TxtEmail').focus();
             return false;

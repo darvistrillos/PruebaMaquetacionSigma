@@ -30,6 +30,7 @@
                     </div>
                 </b-col>
             </b-row>
+    
         </b-container>
         <div>
             <b-button @click="showMsgBoxOne" class="modalguarda1" hidden></b-button>
@@ -49,35 +50,52 @@
                 <p class="my-4">Ingrese su nombre</p>
             </b-modal>
             <b-button v-b-modal.modal-5 id="modalguarda5" hidden></b-button>
-           <b-modal id="modal-5" title="Prueba Maquetación" size='sm' buttonSize='sm' headerClass='p-2 border-bottom-0' footerClass='p-2 border-top-0' centered: true okVariant="warning">
+            <b-modal id="modal-5" title="Prueba Maquetación" size='sm' buttonSize='sm' headerClass='p-2 border-bottom-0' footerClass='p-2 border-top-0' centered: true okVariant="warning">
                 <p class="my-4">Ingrese su correo electronico</p>
             </b-modal>
+            <b-button v-b-modal.modal-7 id="modalguarda7" hidden></b-button>
+            <b-modal id="modal-7" title="Prueba Maquetación" size='sm' buttonSize='sm' headerClass='p-2 border-bottom-0' footerClass='p-2 border-top-0' centered: true okVariant="warning">
+                <p class="my-4">Ingrese un correo electronico valido</p>
+            </b-modal>
         </div>
+    
+        <!--- <div>
+                {{ info }}
+            </div> --->
     </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     data() {
         return {
+            info: null,
+            boxOne: '',
             form: {
                 email: "",
                 name: "",
-                boxOne: ''
             },
             departamento: "Antioquia",
             Departamentos: [
+                { item: "v", namer: "" },
                 { item: "A", namer: "Antioquia" },
                 { item: "B", namer: "Atlantico" },
                 { item: "D", namer: "Amazonas", notEnabled: true },
             ],
             ciudad: "Medellin",
             Ciudades: [
+                { item: "w", namer: "" },
                 { item: "E", namer: "Barranquilla" },
                 { item: "F", namer: "Medellin" },
                 { item: "G", namer: "Leticia", notEnabled: true },
             ],
         };
+    },
+    mounted() {
+        axios.get('https://cors-anywhere.herokuapp.com/https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json').then(response => (this.info = response))
+        // axios.get('https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json').then(response => (this.info = response.data.bpi))
+
     },
     methods: {
         onSubmit(evt) {
