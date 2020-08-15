@@ -9,4 +9,4 @@ npm install require
 
 npm run dev
 
-Antes se deben sumbir los archivos Custumer.php y conexion.php a el directorio raiz o base del servidor apache-server
+Antes se deben subir los archivos Custumer.php y conexion.php a el directorio raiz o base del servidor apache-server  /www 
