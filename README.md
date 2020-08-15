@@ -28,6 +28,9 @@ npm install require
 # serve with hot reload at localhost:8080
 npm run dev
 
+
+# Before copy and paste the files Custumer.php y conexion.php at base_dir or /www of apache-server
+
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
