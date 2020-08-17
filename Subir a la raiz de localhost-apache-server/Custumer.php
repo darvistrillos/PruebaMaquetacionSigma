@@ -19,8 +19,8 @@ function Guardar()
 {
     $xConn = ConexionMysql();
     $xNombre            = strtoupper($_POST["jNombre"]);
-    $xMunicipio         = $_POST["jMunicipio"];
-    $xDepartamento      = $_POST["jDepartamento"];
+    $xMunicipio         = utf8_decode($_POST["jMunicipio"]);
+    $xDepartamento      = utf8_decode($_POST["jDepartamento"]);
     $xEmail             = strtolower($_POST["jEmail"]);
     $xError1 = '';
     $xError2 = '';
