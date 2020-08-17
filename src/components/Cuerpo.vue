@@ -12,11 +12,20 @@
                         <br />
                         <b-form @submit="onSubmit" id="custumer" name="custumer" method="POST">
                             <div id="labelform">Departamento*</div>
-                            <b-form-select id="TxtDepartamento" name="TxtDepartamento" v-model="departamento" :options="Departamentos" class="mb-3 sizecon" value-field="namer" text-field="namer" disabled-field="notEnabled"></b-form-select>
-    
+                            <b-form-select id="TxtDepartamento" name="TxtDepartamento" class="mb-3 sizecon" v-model="TxtDepartamento">
+                                <option v-for="(deps,key) in info.data" v-bind:value="key" v-bind:key="key"  >{{ key }}</option>
+                            </b-form-select>
                             <div id="labelform">Ciudad*</div>
-                            <b-form-select id="TxtMunicipio" name="TxtMunicipio" v-model="ciudad" :options="Ciudades" class="mb-3 sizecon" value-field="namer" text-field="namer" disabled-field="notEnabled"></b-form-select>
-    
+                            <div v-for="(deps,key) in info.data" v-if="key==TxtDepartamento" :key="deps">
+                                <b-form-select id="TxtMunicipio" name="TxtMunicipio" v-model="TxtMunicipio" class="mb-3 sizecon">
+                                    <option v-for="(ciuds) in deps" :key="ciuds">{{ ciuds }}</option>
+                                </b-form-select>
+                            </div>
+                            <div>
+                                <b-form-select id="TxtMunicipiox" name="TxtMunicipiox" v-if="TxtDepartamento==''" class="mb-3 sizecon">
+                                    <option value=""></option>
+                                </b-form-select>
+                            </div>
                             <div id="labelform">Nombre*</div>
                             <b-form-input id="TxtNombre" name="TxtNombre" class="mb-3 sizecon" v-model="form.name" placeholder="Pepito de Jesús"></b-form-input>
     
@@ -36,13 +45,12 @@
             <b-button @click="showMsgBoxOne" class="modalguarda1" hidden></b-button>
             <div class="mb-2">
             </div>
-    
             <b-button v-b-modal.modal-2 id="modalguarda2" hidden></b-button>
-            <b-modal id="modal-2" title="Prueba Maquetación" size='sm' buttonSize='sm' headerClass='p-2 border-bottom-0' footerClass='p-2 border-top-0' centered: true okVariant="warning" required="true">
+            <b-modal id="modal-2" title="Prueba Maquetación" size='sm' buttonSize='sm' headerClass='p-2 border-bottom-0' footerClass='p-2 border-top-0' centered: true okVariant="warning" >
                 <p class="my-4">Ingrese un depatamento</p>
             </b-modal>
             <b-button v-b-modal.modal-3 id="modalguarda3" hidden></b-button>
-            <b-modal id="modal-3" title="Prueba Maquetación" size='sm' buttonSize='sm' headerClass='p-2 border-bottom-0' footerClass='p-2 border-top-0' centered: true okVariant="warning" required="true">
+            <b-modal id="modal-3" title="Prueba Maquetación" size='sm' buttonSize='sm' headerClass='p-2 border-bottom-0' footerClass='p-2 border-top-0' centered: true okVariant="warning" >
                 <p class="my-4">Ingrese una ciudad</p>
             </b-modal>
             <b-button v-b-modal.modal-4 id="modalguarda4" hidden></b-button>
@@ -58,10 +66,6 @@
                 <p class="my-4">Ingrese un correo electronico valido</p>
             </b-modal>
         </div>
-    
-        <!--- <div>
-                {{ info }}
-            </div> --->
     </div>
 </template>
 
@@ -70,32 +74,18 @@ import axios from 'axios'
 export default {
     data() {
         return {
-            info: null,
+            info: [],
             boxOne: '',
+            TxtDepartamento: [],
             form: {
                 email: "",
                 name: "",
-            },
-            departamento: "Antioquia",
-            Departamentos: [
-                { item: "v", namer: "" },
-                { item: "A", namer: "Antioquia" },
-                { item: "B", namer: "Atlantico" },
-                { item: "D", namer: "Amazonas", notEnabled: true },
-            ],
-            ciudad: "Medellin",
-            Ciudades: [
-                { item: "w", namer: "" },
-                { item: "E", namer: "Barranquilla" },
-                { item: "F", namer: "Medellin" },
-                { item: "G", namer: "Leticia", notEnabled: true },
-            ],
+            }
         };
     },
     mounted() {
         axios.get('https://cors-anywhere.herokuapp.com/https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json').then(response => (this.info = response))
         // axios.get('https://sigma-studios.s3-us-west-2.amazonaws.com/test/colombia.json').then(response => (this.info = response.data.bpi))
-
     },
     methods: {
         onSubmit(evt) {
