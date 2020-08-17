@@ -17,13 +17,14 @@ $(document).ready(function () {
         jNombre = $('#TxtNombre').val();
         jEmail = $('#TxtEmail').val();
         jDepartamento = $('#TxtDepartamento').val();
-        jMunicipio = $('#TxtMunicipio').val()
-        if (jDepartamento == '') {
+        jMunicipio = $('#TxtMunicipio').val();
+       
+        if (jDepartamento == '' || !jDepartamento) {
             $('#modalguarda2').trigger('click');
             $('#TxtDepartamento').focus();
             return false;
         }
-        if (jMunicipio == '') {
+        if (jMunicipio == '' || !jMunicipio) {
             $('#modalguarda3').trigger('click');
             $('#TxtMunicipio').focus();
             return false;
