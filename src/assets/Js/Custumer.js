@@ -9,9 +9,9 @@ $(document).ready(function () {
         $('#TxtDepartamento').val('');
         $('#TxtMunicipio').val('');
     }
-    /////////////
-    // Guardar //
-    /////////////
+    ///////////////////////
+    // Guardar Contacto //
+    //////////////////////
     $('#BtnGuardar').click(function () {
 
         jNombre = $('#TxtNombre').val();
